@@ -35,9 +35,9 @@ public class Node implements Comparable<Node> {
             }
         }
         for (String key : productMap.keySet()) {
-            List<Node> vals = productMap.get(key);
-            for(Node node: vals){
-                System.out.println("Node "+node.label);
+            List<Node> nodesList = productMap.get(key);
+            for(Node node: nodesList){
+                System.out.println("Node "+node.label+" Parent id"+node.parentID);
             }
         }
 
