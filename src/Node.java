@@ -6,9 +6,6 @@ public class Node implements Comparable<Node> {
     int id;
     int parentID;
     String label;
-    Node childA;
-    List<Node> childB;
-
 
     public Node() {
 

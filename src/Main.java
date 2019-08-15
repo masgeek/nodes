@@ -28,7 +28,14 @@ public class Main {
 
     static void printTree(ArrayList<Node> nodes) {
         Map<Integer, List<Node>> productMap = new HashMap<>();
+        Map<Integer, Node> keyNodes = new HashMap<>();
         List<Node> listA = new ArrayList<>();
+
+        for (Node product : nodes) {
+            int pid = product.parentID;
+            keyNodes.put(pid, product);
+        }
+
         for (Node product : nodes) {
             int pid = product.parentID;
             listA.add(product);
@@ -41,39 +48,28 @@ public class Main {
             }
         }
 
-        Map<Integer, List<Node>> croupedList =
+        Map<Integer, List<Node>> groupedList =
                 listA.stream().collect(Collectors.groupingBy(w -> w.parentID));
 
-        int h = croupedList.size();
-//        for (Node product : nodes) {
-//            int pid = product.id;
-//
-//            if (productMap.containsKey(pid)) {
-//                productMap.get(pid).add(product.childA = product);
-//            } else {
-//                List<Node> list = new ArrayList<Node>();
-//                list.add(product.childA = product);
-//                productMap.put(pid, list);
-//            }
-//        }
-//
-//        Map<Integer, List<Node>> finalNode =productMap;
-//
-//        String firstKey = "";
-        for (int key : productMap.keySet()) {
-            List<Node> nodesList = productMap.get(key);
-//            System.out.println(String.format("%s", key));
-            for (Node node : nodesList) {
-                if (node.id==key) {
-                    List<Node> nodesListB = productMap.get(node.id);
-                    System.out.println(String.format("  %s myid %s parent %s key %s", node.label, node.id, node.parentID, key));
-                }
 
+        for (int key : keyNodes.keySet()) {
+            Node k = keyNodes.get(key);
+            List<Node> nodesList = productMap.get(key);
+            System.out.println(String.format("%s", k.label));
+
+
+        }
+        boolean h = true;
+        if (h) {
+            return;
+        }
+        for (int key : groupedList.keySet()) {
+            List<Node> nodesList = productMap.get(key);
+//                System.out.println(String.format("%s", key));
+            for (Node node : nodesList) {
+                System.out.println(String.format("  %s", node.label));
             }
         }
-
-//        int size = finalNode.size();
-
     }
 
 }
